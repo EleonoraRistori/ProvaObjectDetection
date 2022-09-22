@@ -1,0 +1,409 @@
+html, body{
+    font-family: unify sans,Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#SmartLens{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    height: 20px;
+    width: 100%;
+    z-index: 2;
+    margin: 0;
+    padding: 20px;
+}
+
+#cross {
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    position: absolute;
+    right: 60px;
+    z-index: 999;
+}
+
+#cross span, #cross span:before, #cross span:after {
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    border-radius: 2px;
+
+}
+#cross span:before, #cross span:after {
+    content: "";
+    position: absolute;
+    top: 6px;
+}
+#cross span:after {
+    top: 11px;
+}
+
+#cross span{
+    background-color: transparent;
+}
+
+#cross span:before{
+    transform: rotate(45deg) translate(0px, -1px);
+    z-index: 9999;
+}
+
+#cross span:after{
+    transform: rotate(-45deg) translate(4px, -4px);
+    z-index: 9999;
+}
+
+#camera, #camera--view, #camera--sensor, #camera--output{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+
+
+
+
+
+
+
+.taken{
+    height: 100px!important;
+    width: 100px!important;
+    transition: all 0.5s ease-in;
+    border: solid 3px white;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+}
+
+
+#zoom {
+    -webkit-appearance: slider-vertical;
+    position: fixed;
+    right: 2%;
+    top: 20%;
+    height: 60%;
+    width: 20px;
+    z-index: 2;
+}
+
+
+
+#canvas_no_display{
+    display: none;
+}
+
+
+
+#overlay{
+    display: none;
+    width: 100%;
+}
+
+
+
+:root {
+    --background: #fff;
+    --foreground: #000;
+    --divider: #dcdcdc;
+    --overlay: #888;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.responsive-image{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+
+
+    overflow: hidden;
+    line-height: 1.5;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 1rem;
+    border: none;
+
+    background: var(--background);
+    color: var(--foreground);
+    cursor: pointer;
+}
+
+#sheet {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    visibility: visible;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+#sheet::-webkit-scrollbar {
+    display: none;
+}
+
+#sheet[aria-hidden="true"] {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+
+#sheet .contents {
+
+
+    background: var(--background);
+
+    position: relative;
+
+    overflow-y: hidden;
+    --default-transitions: transform 0.5s, border-radius 0.5s;
+
+    transition: var(--default-transitions);
+    transform: translateY(0);
+
+    max-height: 100vh;
+    height: 30vh;
+
+    max-width: 100rem;
+
+    box-sizing: border-box;
+    padding: 1rem;
+    padding-top: 2rem;
+}
+
+#sheet .contents:not(.not-selectable) {
+    transition: var(--default-transitions), height 0.5s;
+}
+
+#sheet .contents.fullscreen {
+    border-radius: 0;
+}
+
+#sheet[aria-hidden="true"] .contents {
+    transform: translateY(100%);
+}
+
+#sheet .draggable-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 3rem;
+    margin: auto;
+    padding: 1rem;
+    cursor: grab;
+}
+
+#sheet .draggable-thumb {
+    width: inherit;
+    height: 0.25rem;
+    background: var(--divider);
+    border-radius: 0.125rem;
+}
+
+#sheet #close-sheet {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    width: 50px;
+}
+
+#sheet .body {
+    height: 100%;
+    overflow-y: auto;
+    gap: 1rem;
+}
+
+#detailName{
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    margin-top: 0;
+
+}
+
+#artwork{
+    margin: 10px 0 10px 0;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#detailImage{
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.flex-container div {
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+#information {
+    display: block;
+    flex-grow: 4;
+    flex-basis: 0;
+}
+
+#audioGuide {
+    border: none;
+    background-color: white;
+    color: #2091EB;
+    justify-content: center;
+    font-size: 14px;
+    margin-right: 10px;
+    padding: 0;
+}
+
+#audioGuide p{
+    text-align: justify-all;
+    margin-top: 0;
+
+}
+
+#restart {
+    display: none;
+    border: 2px solid #F1F1F1;
+    margin-left: 10px;
+    padding: 5px;
+    background-color: white;
+    color: #2091EB;
+    justify-content: center;
+    font-size: 25px;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+.info {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    margin-bottom: 5px;
+    font-size: 12px;
+    z-index: 1;
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    width: 250px;
+    margin-left: 30px;
+}
+
+#detailContainer{
+    display:flex;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 999;
+    align-items: flex-start;
+    justify-content: left;
+    height: auto;
+}
+
+.details{
+    width : calc(6vw + 8px);
+    height: calc(6vw + 30px);
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+.details img{
+    width : 6vw;
+    height :  6vw;
+    border-radius : 50%;
+    border : 4px solid white;
+
+}
+
+.detailLabel{
+    position: relative;
+    z-index: 999;
+    font-size: 10px;
+    color: white;
+    bottom: 10px;
+}
+
+
+
+@media only screen and (max-width: 900px) and (orientation: portrait) {
+    .flex-container{
+        display: inline;
+
+    }
+    .flex-container div{
+        padding-right: 0;
+    }
+    #detailImage{
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 80%;
+        padding-right: 0;
+    }
+
+    #audioGuide{
+        width: 30%;
+        margin-left: 35%;
+
+    }
+
+    #restart{
+        width: 30%;
+        margin-left: 35%;
+    }
+
+    .details {
+        width: calc(10vw + 6px);
+        height: calc(10vw + 30px);
+        margin-left: 15px;
+    }
+
+    .details img{
+        width: 10vw;
+        height: 10vw;
+        border : 3px solid white;
+    }
+    .info{
+        margin-left: 15px;
+    }
+
+}
+
+
+
+
+
+
