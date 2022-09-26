@@ -39,7 +39,7 @@ let video = document.querySelector('#camera--view')
 let canvas = document.getElementById('canvas_no_display');
 const body = document.getElementById('camera')
 
-function drawBoxes(x, y, width, height){
+function drawBoxes(x, y, width, height, classification){
     let box = document.createElement('p');
     body.appendChild(box)
     x = x * screen.width / webcam.videoWidth;
@@ -53,6 +53,8 @@ function drawBoxes(x, y, width, height){
     box.style.width = String(width) + 'px';
     box.style.height = String(height) + 'px';
     box.style.border = '2px solid white';
+    box.innerText = classification;
+    box.style.color = 'white'
 
 }
 
@@ -61,7 +63,7 @@ async function calculateFeaturesOnCurrentFrame(webcam){
     return await model.detect(webcam).then(predictions => {
         console.log('Predictions: ', predictions);
         for (let i = 0; i < predictions.length; i++) {
-            drawBoxes(predictions[i].bbox[0], predictions[i].bbox[1], predictions[i].bbox[2], predictions[i].bbox[3])
+            drawBoxes(predictions[i].bbox[0], predictions[i].bbox[1], predictions[i].bbox[2], predictions[i].bbox[3], predictions[i].class)
         }
         return predictions
     })
