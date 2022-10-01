@@ -42,10 +42,10 @@ const body = document.getElementById('camera')
 function drawBoxes(x, y, width, height, classification){
     let box = document.createElement('p');
     body.appendChild(box)
-    x = x * window.innerWidth / webcam.videoWidth;
-    y = y * window.innerHeight / webcam.videoHeight;
-    width = width * window.innerWidth / webcam.videoWidth;
-    height = height * window.innerHeight / webcam.videoHeight;
+    x = x * document.documentElement.clientWidth / webcam.videoWidth;
+    y = y * document.documentElement.clientHeight / webcam.videoHeight;
+    width = width * document.documentElement.clientWidth / webcam.videoWidth;
+    height = height * document.documentElement.clientHeight/ webcam.videoHeight;
     box.style.position = 'fixed'
     box.style.zIndex = '9999'
     box.style.left = String(x) + 'px';
