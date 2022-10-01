@@ -41,12 +41,12 @@ const body = document.getElementById('camera')
 let win = document.createElement('p');
 body.appendChild(win)
 win.style.position = 'fixed'
-win.style.zIndex = '9999'
+win.style.zIndex = '99999'
 win.style.left = '0';
 win.style.top ='0';
-win.style.width = String(document.documentElement.clientWidth) + 'px';
-win.style.height = String(document.documentElement.clientHeight) + 'px';
-win.style.border = '2px solid green';
+win.style.width = String(document.documentElement.clientWidth - 8) + 'px';
+win.style.height = String(document.documentElement.clientHeight - 8) + 'px';
+win.style.border = '4px solid green';
 win.style.margin = '0'
 
 
