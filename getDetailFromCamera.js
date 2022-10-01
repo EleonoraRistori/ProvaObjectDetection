@@ -38,7 +38,7 @@ const detailContainer = document.getElementById('detailContainer')
 let video = document.querySelector('#camera--view')
 let canvas = document.getElementById('canvas_no_display');
 const body = document.getElementById('camera')
-let win = document.createElement('p');
+let win = document.createElement('a');
 body.appendChild(win)
 win.style.position = 'fixed'
 win.style.zIndex = '99999'
