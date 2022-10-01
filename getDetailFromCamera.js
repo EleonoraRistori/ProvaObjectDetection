@@ -38,6 +38,17 @@ const detailContainer = document.getElementById('detailContainer')
 let video = document.querySelector('#camera--view')
 let canvas = document.getElementById('canvas_no_display');
 const body = document.getElementById('camera')
+let win = document.createElement('p');
+body.appendChild(win)
+win.style.position = 'fixed'
+win.style.zIndex = '9999'
+win.style.left = '0';
+win.style.top ='0';
+win.style.width = String(document.documentElement.clientWidth) + 'px';
+win.style.height = String(document.documentElement.clientHeight) + 'px';
+win.style.border = '2px solid green';
+win.style.margin = '0'
+
 
 function drawBoxes(x, y, width, height, classification){
     let box = document.createElement('p');
@@ -45,7 +56,7 @@ function drawBoxes(x, y, width, height, classification){
     x = x * document.documentElement.clientWidth / webcam.videoWidth;
     y = y * document.documentElement.clientHeight / webcam.videoHeight;
     width = width * document.documentElement.clientWidth / webcam.videoWidth;
-    height = height * document.documentElement.clientHeight/ webcam.videoHeight;
+    height = height * document.documentElement.clientWidth/ webcam.videoHeight;
     box.style.position = 'fixed'
     box.style.zIndex = '9999'
     box.style.left = String(x) + 'px';
@@ -54,7 +65,8 @@ function drawBoxes(x, y, width, height, classification){
     box.style.height = String(height) + 'px';
     box.style.border = '2px solid white';
     box.innerText = classification;
-    box.style.color = 'white'
+    box.style.color = 'white';
+    box.style.margin = '0';
 
 }
 
