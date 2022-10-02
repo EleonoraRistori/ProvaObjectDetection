@@ -53,8 +53,17 @@ win.style.margin = '0'
 function drawBoxes(x, y, width, height, classification){
     let box = document.createElement('p');
     body.appendChild(box)
-    x = x * document.documentElement.clientWidth / webcam.videoWidth;
-    y = y * document.documentElement.clientHeight / webcam.videoHeight;
+    if(document.documentElement.clientWidth / document.documentElement.clientHeight > webcam.videoWidth / webcam.videoHeight){
+        let offsetY = (document.documentElement.clientWidth * 3/4 - document.documentElement.clientHeight) / 2
+        x = x * document.documentElement.clientWidth / webcam.videoWidth;
+        y = y *  document.documentElement.clientWidth / webcam.videoWidth - offsetY;
+    }else{
+        let offsetX = (document.documentElement.clientHeight * 4/3 - document.documentElement.clientWidth) / 2;
+        x = x * document.documentElement.clientHeight / webcam.videoHeight - offsetX;
+        y = y *  document.documentElement.clientHeight / webcam.videoHeight
+    }
+
+
     width = width * document.documentElement.clientWidth / webcam.videoWidth;
     height = height * document.documentElement.clientWidth/ webcam.videoHeight;
     box.style.position = 'fixed'
@@ -84,12 +93,15 @@ async function calculateFeaturesOnCurrentFrame(webcam){
 
 
 
-function predictLoop() {
-    let imageFeatures = calculateFeaturesOnCurrentFrame(webcam);
+async function predictLoop() {
+    let imageFeatures = await calculateFeaturesOnCurrentFrame(webcam);
     let p = document.getElementsByTagName(`p`)
-    for (let i=0; i < p.length; i++){
-        p[i].remove();
-    }
+    setInterval(function (){
+        for (let i=0; i < p.length; i++){
+            p[i].remove();
+        }
+    }, 50)
+
     window.requestAnimationFrame(predictLoop);
 
 
